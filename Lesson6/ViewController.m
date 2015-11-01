@@ -32,7 +32,7 @@
     NSInteger count = [svc.consoleLabel.text longLongValue];
     self.items++;
     if (self.items>2) {
-        stack = [NSString stringWithFormat:@"%s", "Error"];
+        stack = @"Error";
         [conLabel1 setText:stack];
         [conLabel2 setText:@""];
         [conLabel3 setText:@""];
@@ -42,7 +42,7 @@
         count=0;
         self.items=0;
     } else if (self.items==2) {
-        stack = [NSString stringWithFormat:@"%ld", count];
+        stack = [NSString stringWithFormat:@"%ld", (long)count];
         [conLabel3 setText:stack];
         [conLabel4 setText:@"="];
         if ([conLabel2.text isEqual:@"+"]) {
@@ -51,14 +51,14 @@
             stack = [NSString stringWithFormat:@"%ld", result-count];
         } else if ([conLabel2.text isEqual:@"*"]) {
             stack = [NSString stringWithFormat:@"%ld", count*result];
-        }   else if ([conLabel2.text isEqual:@"/"]) {
+        } else if ([conLabel2.text isEqual:@"/"]) {
             if (count==0) {
-                stack = [NSString stringWithFormat:@"%s", "infinity"];
+                stack = @"infinity";
             } else {
             stack = [NSString stringWithFormat:@"%ld", result/count];
             }
         } else {
-            stack = [NSString stringWithFormat:@"%s", "Error"];
+            stack = @"Error";
             [conLabel1 setText:stack];
             [conLabel2 setText:@""];
             [conLabel3 setText:@""];
@@ -71,7 +71,7 @@
         }
         [conLabel5 setText:stack];
     } else if (self.items==1) {
-        stack = [NSString stringWithFormat:@"%ld", count];
+        stack = [NSString stringWithFormat:@"%ld", (long)count];
         [conLabel1 setText:stack];
         result=count;
     }
@@ -88,6 +88,7 @@
         }else if(type == 4){ // division
             [conLabel2 setText:@"/"];
         } else if (type==5) { // clear
+            self.items = 0;
             [conLabel1 setText:@""];
             [conLabel2 setText:@""];
             [conLabel3 setText:@""];
